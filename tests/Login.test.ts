@@ -21,3 +21,12 @@ test("Locked out user login", async ({page}) => {
 >>>>>>> 6615d1b (Second test done)
     expect(await inventory_page.isLoaded()).toBe(false);
 });
+
+test("Invalid credentials login", async ({page}) => {
+    let login_page = new LoginPage(page);
+    let inventory_page = new InventoryPage(page);
+    await page.goto("https://www.saucedemo.com/");
+    await login_page.login("Wrong_name", "wrong_password");
+    expect(await login_page.getErrorMessage()).toBe("Epic sadface: Username and password do not match any user in this service")
+    expect(await inventory_page.isLoaded()).toBe(false);
+});
