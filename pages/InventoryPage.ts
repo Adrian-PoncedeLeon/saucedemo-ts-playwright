@@ -15,7 +15,7 @@ export class InventoryPage{
         return await this.pageTitle.textContent() == "Productsssssssssssss";
 =======
         if(await this.pageTitle.isVisible())
-            return await this.pageTitle.textContent() == "Products";
+            return await this.pageTitle.textContent() == "Product22222222";
         else
             return false
 >>>>>>> 6615d1b (Second test done)
