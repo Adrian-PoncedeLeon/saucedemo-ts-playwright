@@ -5,7 +5,7 @@ export class LoginPage{
     private page; 
     private usernameField;
     private passwordField;
-    private loginButton;   
+    private loginButton;
 
     constructor(page:Page){
         this.page = page;
@@ -18,5 +18,10 @@ export class LoginPage{
         await this.usernameField.fill(user);
         await this.passwordField.fill(password);
         await this.loginButton.click();
+    }
+
+    async getErrorMessage(){
+        return this.page.locator("h3[data-test='error']").innerText();
+        
     }
 }

@@ -11,6 +11,9 @@ export class InventoryPage{
     }
 
     async isLoaded(){
-        return await this.pageTitle.textContent() == "Productsssssssssssss";
+        if(await this.pageTitle.isVisible())
+            return await this.pageTitle.textContent() == "Products";
+        else
+            return false
     }
 }
