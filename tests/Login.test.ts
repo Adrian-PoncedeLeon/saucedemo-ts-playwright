@@ -2,6 +2,7 @@ import {test,expect} from '@playwright/test'
 import {LoginPage} from '../pages/LoginPage'
 import { InventoryPage } from '../pages/InventoryPage';
 
+//Test 1: User logins succesuflly with valid credentials 
 test("Succesfull login", async ({page}) => {
     let login_page = new LoginPage(page);
     let inventory_page = new InventoryPage(page);
@@ -10,6 +11,7 @@ test("Succesfull login", async ({page}) => {
     expect(await inventory_page.isLoaded()).toBe(true);
 });
 
+//Test 2: User logins with locked out user credentials and gets error message/
 test("Locked out user login", async ({page}) => {
     let login_page = new LoginPage(page);
     let inventory_page = new InventoryPage(page);
@@ -19,6 +21,7 @@ test("Locked out user login", async ({page}) => {
     expect(await inventory_page.isLoaded()).toBe(false);
 });
 
+//Test 3: User logins with invalid credentials and gets error message
 test("Invalid credentials login", async ({page}) => {
     let login_page = new LoginPage(page);
     let inventory_page = new InventoryPage(page);
@@ -26,4 +29,27 @@ test("Invalid credentials login", async ({page}) => {
     await login_page.login("Wrong_name", "wrong_password");
     expect(await login_page.getErrorMessage()).toBe("Epic sadface: Username and password do not match any user in this service")
     expect(await inventory_page.isLoaded()).toBe(false);
+});
+
+//Test 4: User logins with missing credentials and gets error message
+test("Missing credentials login", async ({page}) => {
+    let login_page = new LoginPage(page);
+    let inventory_page = new InventoryPage(page);
+    await page.goto("https://www.saucedemo.com/");
+    await login_page.login("", "secret_sauce");
+    expect(await login_page.getErrorMessage()).toBe("Epic sadface: Username is required")
+    expect(await inventory_page.isLoaded()).toBe(false);
+    await login_page.login("standard_user", "");
+    expect(await login_page.getErrorMessage()).toBe("Epic sadface: Password is required")
+    expect(await inventory_page.isLoaded()).toBe(false);
+});
+
+//Test 5: User logins with problem user credentials and gets all products images the same. This one is designed to fail (products images are not correct)
+test("Problem user login", async ({page}) => {
+    let login_page = new LoginPage(page);
+    let inventory_page = new InventoryPage(page);
+    await page.goto("https://www.saucedemo.com/");
+    await login_page.login("problem_user", "secret_sauce");
+    expect(await inventory_page.isLoaded()).toBe(true);
+    expect(await inventory_page.productsImagesAreCorrect()).toBe(true);
 });
