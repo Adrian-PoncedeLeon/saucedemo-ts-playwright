@@ -1,0 +1,36 @@
+
+[
+  {
+    "firstname": "Adrian",
+    "lastname": "Ponce de Leon",
+    "totalprice": 999,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2026-01-01",
+      "checkout": "2026-01-31"
+    },
+    "additionalneeds": "Smoking area"
+  },
+  {
+    "firstname": "Malar",
+    "lastname": "Arjun",
+    "totalprice": 1115,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2026-02-10",
+      "checkout": "2026-02-15"
+    },
+    "additionalneeds": "Dinner"
+  },
+  {
+    "firstname": "Sofia",
+    "lastname": "Martinez",
+    "totalprice": 750,
+    "depositpaid": false,
+    "bookingdates": {
+      "checkin": "2026-03-05",
+      "checkout": "2026-03-12"
+    },
+    "additionalneeds": "Breakfast"
+  }
+]
