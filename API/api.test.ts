@@ -36,8 +36,8 @@ let validateBookingSchema = ajv.compile(bookingSchema);
 test.beforeAll(async ({ request }) => {
     let getToken = await request.post('https://restful-booker.herokuapp.com/auth', {
         data: {
-            username: 'admin',
-            password: 'password123'
+            username: process.env.BOOKER_USERNAME,
+            password: process.env.BOOKER_PASSWORD
         }
     });
 
