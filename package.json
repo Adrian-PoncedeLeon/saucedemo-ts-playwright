@@ -2,15 +2,20 @@
   "name": "saucedemo-sdet",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test:cucumber": "cucumber-js \"Cucumber tests/features/**/*.feature\" --require-module ts-node/register --require \"Cucumber tests/step-definitions/**/*.ts\""
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@cucumber/cucumber": "^12.9.0",
     "@playwright/test": "^1.62.1",
     "@types/node": "^26.6.5",
     "ajv": "^8.20.0",
-    "dotenv": "^18.0.8"
+    "dotenv": "^18.0.8",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
   }
 }
